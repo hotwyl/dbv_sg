@@ -12,7 +12,7 @@
     <label for="id_clube">Clube:</label>
     <select name="id_clube" class="form-control form-control-sm">
         @foreach(App\Models\Clube::all() as $clube)
-            <option value="{{ $clube->id_clube }}" {{ (old('id_clube') ?? $unidade->id_clube ?? '') == $clube->id_clube ? 'selected' : '' }}>
+            <option value="{{ $clube->id_clube }}" {{ (old('id_clube') ?? $unidade->id_clube ?? '') === $clube->id_clube ? 'selected' : '' }}>
                 {{ $clube->nome }}
             </option>
         @endforeach
@@ -25,7 +25,7 @@
 <div class="form-group">
     <label for="status">Status:</label>
     <select name="status" class="form-control form-control-sm">
-        <option value="1" {{ old('status', $unidade->status ?? 1) == '1' ? 'selected' : '' }}>Ativo</option>
-        <option value="0" {{ old('status', $unidade->status ?? 1) == '0' ? 'selected' : '' }}>Inativo</option>
+        <option value="1" {{ old('status', $unidade->status ?? 1) === '1' ? 'selected' : '' }}>Ativo</option>
+        <option value="0" {{ old('status', $unidade->status ?? 1) === '0' ? 'selected' : '' }}>Inativo</option>
     </select>
 </div>

@@ -7,16 +7,61 @@
 @stop
 
 @section('content')
-    <div class="card">
-        <div class="card-header">
-            <h3 class="card-title">{{ $desbravador->nome }}</h3>
+
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
+            <li class="breadcrumb-item"><a href="{{ route('desbravadores.index') }}">Desbravadores</a></li>
+            <li class="breadcrumb-item active" aria-current="page">{{ $desbravador->nome }}</li>
+        </ol>
+    </nav>
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Informações do Desbravador</h3>
+                </div>
+                <div class="card-body">
+                    <p><strong>Nome do Clube:</strong> {{ $desbravador->unidade->clube->nome }}</p>
+                    <p><strong>Nome da Unidade:</strong> {{ $desbravador->unidade->nome }}</p>
+                    <p><strong>Nome do Desbravador:</strong> {{ $desbravador->nome }}</p>
+                    <p><strong>Cargo do Desbravador:</strong> {{ $desbravador->cargo->nome }}</p>
+                    <p><strong>Status:</strong> {{ $desbravador->status ? 'Ativo' : 'Inativo' }}</p>
+                </div>
+
+                <div class="card-footer">
+                    <div class="d-flex justify-content-around">
+                        <a href="{{ route('desbravadores.index') }}" class="btn btn-secondary btn-sm">Voltar</a>
+                        <a href="{{ route('desbravadores.edit', $desbravador->id_desbravador) }}" class="btn btn-primary btn-sm">Editar</a>
+                        <form action="{{ route('desbravadores.destroy', $desbravador->id_desbravador) }}" method="post" onsubmit="return confirm('Tem certeza que deseja excluir a unidade {{ $desbravador->nome }} ?')">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger btn-sm">Excluir</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="card-body">
-            <p><strong>ID:</strong> {{ $desbravador->id_desbravador }}</p>
-            <p><strong>Nome:</strong> {{ $desbravador->nome }}</p>
-            <p><strong>Unidade:</strong> {{ $desbravador->unidade->nome }}</p>
-            <p><strong>Cargo:</strong> {{ $desbravador->cargo->nome }}</p>
-            <p><strong>Status:</strong> {{ $desbravador->status ? 'Ativo' : 'Inativo' }}</p>
+
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Informações Adicionais</h3>
+                </div>
+                <div class="card-body">
+                    <p><strong>União:</strong> {{ $desbravador->unidade->clube->uniao }}</p>
+                    <p><strong>Associação:</strong> {{ $desbravador->unidade->clube->associacao }}</p>
+                    <p><strong>Área:</strong> {{ $desbravador->unidade->clube->area }}</p>
+                    <p><strong>Região:</strong> {{ $desbravador->unidade->clube->regiao }}</p>
+                    <p><strong>Distrito:</strong> {{ $desbravador->unidade->clube->distrito }}</p>
+                    <p><strong>Igreja:</strong> {{ $desbravador->unidade->clube->igreja }}</p>
+                </div>
+
+                <div class="card-footer">
+
+                </div>
+            </div>
         </div>
     </div>
 @stop

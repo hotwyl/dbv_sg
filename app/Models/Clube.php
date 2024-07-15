@@ -9,8 +9,8 @@ class Clube extends Model
 {
     use HasFactory;
 
-    protected $table = 'clubes';
-    protected $primaryKey = 'id';
+    protected $table = 'Clubes';
+    protected $primaryKey = 'id_clube';
     protected $fillable = [
         'divisao',
         'uniao',

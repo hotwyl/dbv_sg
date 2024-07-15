@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\Clube;
 use App\Models\Unidade;
 use App\Http\Requests\StoreUnidadeRequest;
 use App\Http\Requests\UpdateUnidadeRequest;
@@ -21,16 +22,19 @@ class UnidadeController extends Controller
     public function index(Request $request)
     {
         $query = Unidade::query();
-
-        if ($request->filled('clube')) {
-            $query->where('clube', 'like', '%' . $request->clube . '%');
-        }
+        $columns = ['nome'];
+        $orderby = 'nome';
+        $paginate = 10;
 
         if ($request->filled('nome')) {
-            $query->where('nome', 'like', '%' . $request->nome . '%');
+            $query->where(function ($query) use ($request, $columns) {
+                foreach ($columns as $column) {
+                    $query->orWhere($column, 'like', '%' . $request->nome . '%');
+                }
+            });
         }
 
-        $unidades = $query->paginate(10);
+        $unidades = $query->orderBy($orderby, 'asc')->paginate($paginate);
 
         return view('unidades.index', compact('unidades'));
     }
@@ -59,7 +63,6 @@ class UnidadeController extends Controller
      */
     public function show(Unidade $unidade)
     {
-        dd($unidade);
         return view('unidades.show', compact('unidade'));
     }
 

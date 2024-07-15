@@ -10,7 +10,7 @@ class Desbravador extends Model
     use HasFactory;
 
     protected $table = 'desbravadores';
-    protected $primaryKey = 'id';
+    protected $primaryKey = 'id_desbravador';
     protected $fillable = ['id_unidade', 'nome', 'id_cargo', 'status'];
 
     public function unidade()

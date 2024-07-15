@@ -20,7 +20,21 @@ class CargoController extends Controller
      */
     public function index(Request $request)
     {
-        $cargos = Cargo::all();
+        $query = Cargo::query();
+        $columns = ['nome'];
+        $orderby = 'nome';
+        $paginate = 10;
+
+        if ($request->filled('nome')) {
+            $query->where(function ($query) use ($request, $columns) {
+                foreach ($columns as $column) {
+                    $query->orWhere($column, 'like', '%' . $request->nome . '%');
+                }
+            });
+        }
+
+        $cargos = $query->orderBy($orderby, 'asc')->paginate($paginate);
+
         return view('cargos.index', compact('cargos'));
     }
 

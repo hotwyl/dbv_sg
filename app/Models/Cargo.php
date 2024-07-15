@@ -10,11 +10,11 @@ class Cargo extends Model
     use HasFactory;
 
     protected $table = 'cargos';
-    protected $primaryKey = 'id';
+    protected $primaryKey = 'id_cargo';
     protected $fillable = ['nome', 'status'];
 
     public function desbravadores()
     {
-        return $this->hasMany(Desbravador::class, 'id');
+        return $this->hasMany(Desbravador::class, 'id_cargo');
     }
 }

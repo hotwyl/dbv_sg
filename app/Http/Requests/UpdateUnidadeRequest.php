@@ -22,7 +22,7 @@ class UpdateUnidadeRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'id_clube' => 'required|exists:clubes,id_clube',
+            'id_clube' => 'required|exists:Clubes,id_clube',
             'nome' => 'required|string|max:100',
             'status' => 'boolean',
         ];

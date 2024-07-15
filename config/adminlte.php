@@ -294,27 +294,10 @@ return [
     */
 
     'menu' => [
-        // Navbar items:
-//        [
-//            'type' => 'navbar-search',
-//            'text' => 'search',
-//            'topnav_right' => true,
-//        ],
         [
             'type' => 'fullscreen-widget',
             'topnav_right' => true,
         ],
-
-        // Sidebar items:
-//        [
-//            'type' => 'sidebar-menu-search',
-//            'text' => 'search',
-//        ],
-//        [
-//            'text' => 'blog',
-//            'url' => 'admin/blog',
-//            'can' => 'manage-blog',
-//        ],
         ['header' => 'account_settings'],
         [
             'text' => 'profile',
@@ -326,76 +309,30 @@ return [
             'url' => 'admin/settings',
             'icon' => 'fas fa-fw fa-lock',
         ],
-//        [
-//            'text' => 'multilevel',
-//            'icon' => 'fas fa-fw fa-share',
-//            'submenu' => [
-//                [
-//                    'text' => 'level_one',
-//                    'url' => '#',
-//                ],
-//                [
-//                    'text' => 'level_one',
-//                    'url' => '#',
-//                    'submenu' => [
-//                        [
-//                            'text' => 'level_two',
-//                            'url' => '#',
-//                        ],
-//                        [
-//                            'text' => 'level_two',
-//                            'url' => '#',
-//                            'submenu' => [
-//                                [
-//                                    'text' => 'level_three',
-//                                    'url' => '#',
-//                                ],
-//                                [
-//                                    'text' => 'level_three',
-//                                    'url' => '#',
-//                                ],
-//                            ],
-//                        ],
-//                    ],
-//                ],
-//                [
-//                    'text' => 'level_one',
-//                    'url' => '#',
-//                ],
-//            ],
-//        ],
         ['header' => 'labels'],
         [
             'text' => 'Clubes',
             'url' => 'clubes',
             'icon' => 'far fa-fw fa-file',
             'icon_color' => 'red',
-            'label' => 'novo',
-            'label_color' => 'success',
         ],
         [
             'text' => 'Unidades',
             'url' => 'unidades',
             'icon' => 'far fa-fw fa-file',
             'icon_color' => 'yellow',
-            'label' => 'novo',
-            'label_color' => 'success',
         ],
         [
             'text' => 'Cargos',
             'url' => 'cargos',
             'icon' => 'far fa-fw fa-file',
             'icon_color' => 'cyan',
-            'label' => 'novo',
-            'label_color' => 'success',
         ],
         [
             'text' => 'Desbravadores',
             'url' => 'desbravadores',
             'icon' => 'far fa-fw fa-file',
-            'icon_color' => 'cyan',
-            'label' => 'novo',
-            'label_color' => 'success',
+            'icon_color' => 'indigo',
         ],
 
     ],

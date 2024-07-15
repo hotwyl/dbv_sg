@@ -31,34 +31,41 @@
         </div>
     </form>
 
-    @if ($message = Session::get('success'))
-        <div class="alert alert-success">
-            <p>{{ $message }}</p>
+    <x-mensagem />
+
+    <table class="table table-bordered table-striped table-hover mt-3">
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            @forelse ($cargos as $cargo)
+                <tr>
+                    <td>{{ $cargo->nome }}</td>
+                    <td class="d-flex justify-content-around">
+                        <a href="{{ route('cargos.show', $cargo->id_cargo) }}" class="btn btn-info btn-sm">Mostrar</a>
+                        <a href="{{ route('cargos.edit', $cargo->id_cargo) }}" class="btn btn-primary btn-sm">Editar</a>
+                        <form action="{{ route('cargos.destroy', $cargo->id_cargo) }}" method="POST" style="display:inline-block;">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Tem certeza que deseja deletar este Cargo/Funcao?')">Deletar</button>
+                        </form>
+                    </td>
+                </tr>
+            @empty
+                <tr>
+                    <td colspan="6">Nenhum registro encontrado.</td>
+                </tr>
+            @endforelse
+        </tbody>
+    </table>
+
+    @if($cargos->total() > $cargos->perPage())
+        <div class="mt-1 py-2">
+            {{ $cargos->appends(request()->query())->links('pagination::bootstrap-5') }}
         </div>
     @endif
 
-    <table class="table table-bordered">
-        <thead>
-        <tr>
-            <th>Nome</th>
-            <th>Ações</th>
-        </tr>
-        </thead>
-        <tbody>
-        @foreach ($cargos as $cargo)
-            <tr>
-                <td>{{ $cargo->nome }}</td>
-                <td class="d-flex justify-content-around">
-                    <a href="{{ route('cargos.show', $cargo->id_cargo) }}" class="btn btn-info btn-sm">Mostrar</a>
-                    <a href="{{ route('cargos.edit', $cargo->id_cargo) }}" class="btn btn-warning btn-sm">Editar</a>
-                    <form action="{{ route('cargos.destroy', $cargo->id_cargo) }}" method="POST" style="display:inline-block;">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Tem certeza que deseja deletar este Cargo/Funcao?')">Deletar</button>
-                    </form>
-                </td>
-            </tr>
-        @endforeach
-        </tbody>
-    </table>
 @endsection

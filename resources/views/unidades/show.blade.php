@@ -18,11 +18,11 @@
     <div class="row">
         <div class="col-md-6">
             <div class="card">
-                <div class="card-header">
+                <div class="card-header text-center">
                     <h5>Informações da Unidade</h5>
                 </div>
                 <div class="card-body">
-                    <p><strong>Clube:</strong> <a href="{{ route('clubes.show', $unidade->clube->id_clube) }}">{{ $unidade->clube->nome }}</a></p>
+                    <p><strong>Clube:</strong> <a href="{{ route('unidades.show', $unidade->clube->id_clube) }}">{{ $unidade->clube->nome }}</a></p>
                     <p><strong>Unidade:</strong> {{ $unidade->nome }}</p>
                     <p><strong>Status:</strong> {{ $unidade->status ? 'Ativo' : 'Inativo' }}</p>
                 </div>
@@ -38,6 +38,25 @@
                     </div>
                 </div>
             </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header text-center">
+                    <h5>Membros da Unidade</h5>
+                </div>
+                <div class="card-body">
+                    <ul>
+                        @foreach ($unidade->desbravadores as $membro)
+                            <li><a href="{{ route('desbravadores.show', $membro->id_desbravador) }}">{{ $membro->nome }}</a></li>
+                        @endforeach
+                    </ul>
+                </div>
+                <div class="card-footer text-center">
+                    <p><strong>Total:</strong> {{ $unidade->desbravadores->count() }}</p>
+                </div>
+            </div>
+
         </div>
     </div>
 

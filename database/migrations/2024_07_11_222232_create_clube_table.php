@@ -11,8 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('clubes', function (Blueprint $table) {
-            $table->id();
+        Schema::create('Clubes', function (Blueprint $table) {
+            $table->id('id_clube');
             $table->string('divisao', 50)->index()->default('Sul-Americana');
             $table->string('uniao', 50)->index()->default('União Sul-Brasileira');
             $table->string('associacao', 50)->index()->default('Sul Paranaense');
@@ -31,6 +31,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('clubes');
+        Schema::dropIfExists('Clubes');
     }
 };

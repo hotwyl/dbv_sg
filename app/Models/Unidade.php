@@ -10,12 +10,12 @@ class Unidade extends Model
     use HasFactory;
 
     protected $table = 'unidades';
-    protected $primaryKey = 'id';
+    protected $primaryKey = 'id_unidade';
     protected $fillable = ['id_clube', 'nome', 'status'];
 
     public function clube()
     {
-        return $this->belongsTo(Clube::class, 'id_clube', 'id_clube');
+        return $this->belongsTo(Clube::class, 'id_clube');
     }
 
     public function desbravadores()

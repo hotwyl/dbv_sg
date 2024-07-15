@@ -25,5 +25,6 @@
             <a href="{{ route('clubes.index') }}" class="btn btn-danger btn-sm mr-5">Cancelar</a>
             <button type="submit" class="btn btn-success btn-sm ml-5">Adicionar</button>
         </div>
+
     </form>
 @endsection

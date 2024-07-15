@@ -43,8 +43,8 @@
 <div class="input-group mb-3">
     <span class="input-group-text">Status:</span>
     <select name="status" class="form-control">
-        <option value="1" {{ old('status', $clube->status ?? 1) == '1' ? 'selected' : '' }}>Ativo</option>
-        <option value="0" {{ old('status', $clube->status ?? 1) == '0' ? 'selected' : '' }}>Inativo</option>
+        <option value="1" {{ old('status', $clube->status ?? 1) === '1' ? 'selected' : '' }}>Ativo</option>
+        <option value="0" {{ old('status', $clube->status ?? 1) === '0' ? 'selected' : '' }}>Inativo</option>
     </select>
 </div>
 

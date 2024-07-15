@@ -4,7 +4,7 @@
 
 @section('content_header')
     <h1>Lista de Clubes</h1>
-@stop
+@endsection
 
 @section('content')
 
@@ -36,43 +36,43 @@
         </div>
     </form>
 
-    @if ($message = Session::get('success'))
-        <div class="alert alert-success">
-            <p>{{ $message }}</p>
-        </div>
-    @endif
+    <x-mensagem />
 
     <table class="table table-bordered table-striped table-hover mt-3">
-        <tr>
-            <th>Área</th>
-            <th>Região</th>
-            <th>Distrito</th>
-            <th>Igreja</th>
-            <th>Nome</th>
-            <th>Ação</th>
-        </tr>
-        @forelse ($clubes as $clube)
+        <thead>
             <tr>
-                <td>{{ $clube->area }}</td>
-                <td>{{ $clube->regiao }}</td>
-                <td>{{ $clube->distrito }}</td>
-                <td>{{ $clube->igreja }}</td>
-                <td>{{ $clube->nome }}</td>
-                <td class="d-flex justify-content-around">
-                    <a class="btn btn-info btn-sm" href="{{ route('clubes.show',$clube->id_clube) }}">Mostrar</a>
-                    <a class="btn btn-primary btn-sm" href="{{ route('clubes.edit',$clube->id_clube) }}">Editar</a>
-                    <form action="{{ route('clubes.destroy',$clube->id_clube) }}" method="POST" onsubmit="return confirm('Tem certeza que deseja excluir o clube {{$clube->nome}} ?')">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="btn btn-danger btn-sm">Deletar</button>
-                    </form>
-                </td>
+                <th>Área</th>
+                <th>Região</th>
+                <th>Distrito</th>
+                <th>Igreja</th>
+                <th>Nome</th>
+                <th>Ação</th>
             </tr>
-        @empty
-            <tr>
-                <td colspan="6">Nenhum registro encontrado.</td>
-            </tr>
-        @endforelse
+        </thead>
+        <tbody>
+            @forelse ($clubes as $clube)
+                <tr>
+                    <td>{{ $clube->area }}</td>
+                    <td>{{ $clube->regiao }}</td>
+                    <td>{{ $clube->distrito }}</td>
+                    <td>{{ $clube->igreja }}</td>
+                    <td>{{ $clube->nome }}</td>
+                    <td class="d-flex justify-content-around">
+                        <a class="btn btn-info btn-sm" href="{{ route('clubes.show',$clube->id_clube) }}">Mostrar</a>
+                        <a class="btn btn-primary btn-sm" href="{{ route('clubes.edit',$clube->id_clube) }}">Editar</a>
+                        <form action="{{ route('clubes.destroy',$clube->id_clube) }}" method="POST" onsubmit="return confirm('Tem certeza que deseja excluir o clube {{$clube->nome}} ?')">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger btn-sm">Deletar</button>
+                        </form>
+                    </td>
+                </tr>
+            @empty
+                <tr>
+                    <td colspan="6">Nenhum registro encontrado.</td>
+                </tr>
+            @endforelse
+        </tbody>
     </table>
 
     @if($clubes->total() > $clubes->perPage())

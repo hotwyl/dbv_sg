@@ -30,34 +30,34 @@
         </div>
     </form>
 
-    @if ($message = Session::get('success'))
-        <div class="alert alert-success">
-            <p>{{ $message }}</p>
-        </div>
-    @endif
+    <x-mensagem />
 
     <table class="table table-bordered table-striped table-hover mt-3">
         <thead>
-        <tr>
-            <th>Unidade</th>
-            <th>Ações</th>
-        </tr>
+            <tr>
+                <th>Unidade</th>
+                <th>Ações</th>
+            </tr>
         </thead>
         <tbody>
-        @foreach ($unidades as $unidade)
-            <tr>
-                <td>{{ $unidade->nome }}</td>
-                <td class="d-flex justify-content-around">
-                    <a href="{{ route('unidades.show', $unidade->id_unidade) }}" class="btn btn-info btn-sm">Mostrar</a>
-                    <a href="{{ route('unidades.edit', $unidade->id_unidade) }}" class="btn btn-primary btn-sm">Editar</a>
-                    <form action="{{ route('unidades.destroy', $unidade->id_unidade) }}" method="POST" style="display:inline;" onsubmit="return confirm('Tem certeza que deseja excluir a unidade {{$unidade->nome}} ?')">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="btn btn-danger btn-sm">Deletar</button>
-                    </form>
-                </td>
-            </tr>
-        @endforeach
+            @forelse ($unidades as $unidade)
+                <tr>
+                    <td>{{ $unidade->nome }}</td>
+                    <td class="d-flex justify-content-around">
+                        <a href="{{ route('unidades.show', $unidade->id_unidade) }}" class="btn btn-info btn-sm">Mostrar</a>
+                        <a href="{{ route('unidades.edit', $unidade->id_unidade) }}" class="btn btn-primary btn-sm">Editar</a>
+                        <form action="{{ route('unidades.destroy', $unidade->id_unidade) }}" method="POST" style="display:inline;" onsubmit="return confirm('Tem certeza que deseja excluir a unidade {{$unidade->nome}} ?')">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger btn-sm">Deletar</button>
+                        </form>
+                    </td>
+                </tr>
+            @empty
+                <tr>
+                    <td colspan="6">Nenhum registro encontrado.</td>
+                </tr>
+            @endforelse
         </tbody>
     </table>
 
@@ -66,4 +66,5 @@
             {{ $unidades->appends(request()->query())->links('pagination::bootstrap-5') }}
         </div>
     @endif
+
 @endsection
