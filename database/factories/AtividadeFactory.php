@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Atividade;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -9,6 +10,8 @@ use Illuminate\Database\Eloquent\Factories\Factory;
  */
 class AtividadeFactory extends Factory
 {
+    protected $model = Atividade::class;
+
     /**
      * Define the model's default state.
      *
@@ -17,7 +20,10 @@ class AtividadeFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'nome' => $this->faker->word,
+            'descricao' => $this->faker->sentence,
+            'valor' => $this->faker->numberBetween(1, 100),
+            'status' => $this->faker->boolean,
         ];
     }
 }

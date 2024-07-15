@@ -134,7 +134,7 @@ return [
     */
 
     'usermenu_enabled' => true,
-    'usermenu_header' => false,
+    'usermenu_header' => true,
     'usermenu_header_class' => 'bg-primary',
     'usermenu_image' => false,
     'usermenu_desc' => false,
@@ -215,7 +215,7 @@ return [
     */
 
     'sidebar_mini' => 'lg',
-    'sidebar_collapse' => false,
+    'sidebar_collapse' => true,
     'sidebar_collapse_auto_size' => false,
     'sidebar_collapse_remember' => false,
     'sidebar_collapse_remember_no_transition' => true,
@@ -332,9 +332,26 @@ return [
             'text' => 'Desbravadores',
             'url' => 'desbravadores',
             'icon' => 'far fa-fw fa-file',
-            'icon_color' => 'indigo',
+            'icon_color' => 'green',
         ],
-
+        [
+            'text' => 'Avaliadores',
+            'url' => 'avaliadores',
+            'icon' => 'far fa-fw fa-file',
+            'icon_color' => 'purple',
+        ],
+        [
+            'text' => 'Atividades',
+            'url' => 'atividades',
+            'icon' => 'far fa-fw fa-file',
+            'icon_color' => 'orange',
+        ],
+        [
+            'text' => 'Avaliacões',
+            'url' => 'avaliacoes',
+            'icon' => 'far fa-fw fa-file',
+            'icon_color' => 'blue',
+        ]
     ],
 
     /*

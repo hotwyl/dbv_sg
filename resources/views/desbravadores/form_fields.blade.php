@@ -1,29 +1,31 @@
-<div class="form-group">
-    <label for="id_unidade">Unidade</label>
+<div class="input-group my-5">
+    <span class="input-group-text">Unidade:</span>
     <select class="form-control" id="id_unidade" name="id_unidade" required>
         @foreach($unidades as $unidade)
             <option value="{{ $unidade->id_unidade }}" {{ (old('id_unidade', $desbravador->id_unidade ?? '') === $unidade->id_unidade) ? 'selected' : '' }}>{{ $unidade->nome }}</option>
         @endforeach
     </select>
+    <a href="{{ route('unidades.create') }}" class="btn btn-secondary ml-3">Adicionar Unidade</a>
 </div>
 
-<div class="form-group">
-    <label for="nome">Nome</label>
+<div class="input-group mb-5">
+    <span class="input-group-text">Nome:</span>
     <input type="text" class="form-control" id="nome" name="nome" value="{{ old('nome', $desbravador->nome ?? '') }}" required>
 </div>
 
-<div class="form-group">
-    <label for="id_cargo">Cargo</label>
-    <select class="form-control" id="id_cargo" name="id_cargo" required>
+<div class="input-group mb-5">
+    <span class="input-group-text">Cargo:</span>
+    <select class="form-control" name="id_cargo" required>
         @foreach($cargos as $cargo)
             <option value="{{ $cargo->id_cargo }}" {{ (old('id_cargo', $desbravador->id_cargo ?? '') === $cargo->id_cargo) ? 'selected' : '' }}>{{ $cargo->nome }}</option>
         @endforeach
     </select>
+    <a href="{{ route('cargos.create') }}" class="btn btn-secondary ml-3">Adicionar Cargo</a>
 </div>
 
-<div class="form-group">
-    <label for="status">Status</label>
-    <select class="form-control" id="status" name="status" required>
+<div class="input-group mb-5">
+    <span class="input-group-text">Status:</span>
+    <select class="form-control" name="status" required>
         <option value="1" {{ (old('status', $desbravador->status ?? 1) === 1) ? 'selected' : '' }}>Ativo</option>
         <option value="0" {{ (old('status', $desbravador->status ?? 0) === 0) ? 'selected' : '' }}>Inativo</option>
     </select>

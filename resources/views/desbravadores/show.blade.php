@@ -23,8 +23,8 @@
                     <h3 class="card-title">Informações do Desbravador</h3>
                 </div>
                 <div class="card-body">
-                    <p><strong>Nome do Clube:</strong> {{ $desbravador->unidade->clube->nome }}</p>
-                    <p><strong>Nome da Unidade:</strong> {{ $desbravador->unidade->nome }}</p>
+                    <p><strong>Nome do Clube:</strong> <a href="{{ route('clubes.show', $desbravador->unidade->clube->id_clube) }}">{{ $desbravador->unidade->clube->nome }}</a></p>
+                    <p><strong>Nome da Unidade:</strong> <a href="{{ route('unidades.show', $desbravador->unidade->id_unidade) }}"> {{ $desbravador->unidade->nome }}</a></p>
                     <p><strong>Nome do Desbravador:</strong> {{ $desbravador->nome }}</p>
                     <p><strong>Cargo do Desbravador:</strong> {{ $desbravador->cargo->nome }}</p>
                     <p><strong>Status:</strong> {{ $desbravador->status ? 'Ativo' : 'Inativo' }}</p>

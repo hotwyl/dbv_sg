@@ -19,6 +19,8 @@ class DatabaseSeeder extends Seeder
             UnidadeSeeder::class,
             CargoSeeder::class,
             DesbravadorSeeder::class,
+            AvaliadorSeeder::class,
+            AtividadeSeeder::class,
         ]);
     }
 }

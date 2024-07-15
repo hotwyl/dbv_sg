@@ -35,6 +35,7 @@
     <table class="table table-bordered table-striped table-hover mt-3">
         <thead>
             <tr>
+                <th>Clube</th>
                 <th>Unidade</th>
                 <th>Ações</th>
             </tr>
@@ -42,6 +43,7 @@
         <tbody>
             @forelse ($unidades as $unidade)
                 <tr>
+                    <td>{{ $unidade->clube->nome }}</td>
                     <td>{{ $unidade->nome }}</td>
                     <td class="d-flex justify-content-around">
                         <a href="{{ route('unidades.show', $unidade->id_unidade) }}" class="btn btn-info btn-sm">Mostrar</a>

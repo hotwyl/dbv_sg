@@ -37,6 +37,7 @@
         <thead>
             <tr>
                 <th>Nome</th>
+                <th>Status</th>
                 <th>Ações</th>
             </tr>
         </thead>
@@ -44,6 +45,7 @@
             @forelse ($cargos as $cargo)
                 <tr>
                     <td>{{ $cargo->nome }}</td>
+                    <td>{{ $cargo->status ? 'Ativo' : 'Inativo' }}</td>
                     <td class="d-flex justify-content-around">
                         <a href="{{ route('cargos.show', $cargo->id_cargo) }}" class="btn btn-info btn-sm">Mostrar</a>
                         <a href="{{ route('cargos.edit', $cargo->id_cargo) }}" class="btn btn-primary btn-sm">Editar</a>

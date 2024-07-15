@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\AtividadeController;
+use App\Http\Controllers\AvaliadorController;
 use App\Http\Controllers\CargoController;
 use App\Http\Controllers\ClubeController;
 use App\Http\Controllers\DesbravadorController;
@@ -35,3 +37,7 @@ Route::resource('unidades', UnidadeController::class);
 Route::resource('cargos', CargoController::class);
 
 Route::resource('desbravadores', DesbravadorController::class);
+
+Route::resource('avaliadores', AvaliadorController::class);
+
+Route::resource('atividades', AtividadeController::class);

@@ -22,6 +22,8 @@
                     <h5>Informações da Unidade</h5>
                 </div>
                 <div class="card-body">
+                    <p><strong>Distrito:</strong> {{ $unidade->clube->distrito }}</p>
+                    <p><strong>Igreja:</strong> {{ $unidade->clube->igreja }}</p>
                     <p><strong>Clube:</strong> <a href="{{ route('unidades.show', $unidade->clube->id_clube) }}">{{ $unidade->clube->nome }}</a></p>
                     <p><strong>Unidade:</strong> {{ $unidade->nome }}</p>
                     <p><strong>Status:</strong> {{ $unidade->status ? 'Ativo' : 'Inativo' }}</p>

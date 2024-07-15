@@ -20,6 +20,7 @@ return new class extends Migration
             $table->integer('regiao')->nullable()->index()->default(4);
             $table->string('distrito', 50)->index();
             $table->string('igreja', 100)->index();
+            $table->enum('tipo', ['Aventureiros', 'Desbravadores'])->default('Desbravadores');
             $table->string('nome', 100)->index();
             $table->boolean('status')->default(true);
             $table->timestamps();

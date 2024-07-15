@@ -1,13 +1,3 @@
-@if ($errors->any())
-    <div class="alert alert-danger">
-        <ul class="m-0">
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-@endif
-
 <div class="input-group mb-3">
     <span class="input-group-text">Divisão:</span>
     <input type="text" name="divisao" class="form-control" value="{{ old('divisao', $clube->divisao ?? '') }}" required>
@@ -35,6 +25,13 @@
 <div class="input-group mb-3">
     <span class="input-group-text">Igreja:</span>
     <input type="text" name="igreja" class="form-control" value="{{ old('igreja', $clube->igreja ?? '') }}">
+</div>
+<div class="input-group mb-3">
+    <span class="input-group-text">Tipo:</span>
+    <select name="tipo" class="form-control">
+        <option value="1" {{ old('tipo', $clube->tipo ?? 1) === '1' ? 'selected' : '' }}>Clube de Desbravadores</option>
+        <option value="2" {{ old('tipo', $clube->tipo ?? 1) === '2' ? 'selected' : '' }}>Clube de Aventureiros</option>
+    </select>
 </div>
 <div class="input-group mb-3">
     <span class="input-group-text">Nome:</span>

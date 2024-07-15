@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Avaliador;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -9,6 +10,8 @@ use Illuminate\Database\Eloquent\Factories\Factory;
  */
 class AvaliadorFactory extends Factory
 {
+    protected $model = Avaliador::class;
+
     /**
      * Define the model's default state.
      *
@@ -17,7 +20,9 @@ class AvaliadorFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'nome' => $this->faker->name,
+            'descricao' => $this->faker->sentence,
+            'status' => $this->faker->boolean,
         ];
     }
 }

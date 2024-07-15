@@ -37,6 +37,7 @@
         <thead>
             <tr>
                 <th>Nome</th>
+                <th>Clube</th>
                 <th>Unidade</th>
                 <th>Cargo</th>
                 <th>Ações</th>
@@ -46,6 +47,7 @@
             @forelse ($desbravadores as $desbravador)
                 <tr>
                     <td>{{ $desbravador->nome }}</td>
+                    <td>{{ $desbravador->unidade->clube->nome }}</td>
                     <td>{{ $desbravador->unidade->nome }}</td>
                     <td>{{ $desbravador->cargo->nome }}</td>
                     <td class="d-flex justify-content-around">
