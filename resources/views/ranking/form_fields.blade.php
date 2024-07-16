@@ -16,7 +16,7 @@
 <div class="form-group">
     <label for="status">Status</label>
     <select class="form-control" id="status" name="status" required>
-        <option value="1" {{ (old('status', $ranking->status ?? 1) == 1) ? 'selected' : '' }}>Ativo</option>
-        <option value="0" {{ (old('status', $ranking->status ?? 0) == 0) ? 'selected' : '' }}>Inativo</option>
+        <option value="1" {{ (old('status', $ranking->status ?? 1) === 1) ? 'selected' : '' }}>Ativo</option>
+        <option value="0" {{ (old('status', $ranking->status ?? 0) === 0) ? 'selected' : '' }}>Inativo</option>
     </select>
 </div>

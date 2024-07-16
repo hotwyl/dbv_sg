@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Avaliador;
 use App\Http\Requests\AvaliadorRequest;
 use App\Http\Controllers\Controller;
+use App\Models\Cargo;
 use Illuminate\Http\Request;
 
 class AvaliadorController extends Controller
@@ -19,7 +20,21 @@ class AvaliadorController extends Controller
      */
     public function index(Request $request)
     {
-        $avaliadores = Avaliador::all();
+        $query = Avaliador::query();
+        $columns = ['nome'];
+        $orderby = 'nome';
+        $paginate = 10;
+
+        if ($request->filled('nome')) {
+            $query->where(function ($query) use ($request, $columns) {
+                foreach ($columns as $column) {
+                    $query->orWhere($column, 'like', '%' . $request->nome . '%');
+                }
+            });
+        }
+
+        $avaliadores = $query->orderBy($orderby, 'asc')->paginate($paginate);
+
         return view('avaliadores.index', compact('avaliadores'));
     }
 
@@ -43,24 +58,27 @@ class AvaliadorController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Avaliador $avaliador)
+    public function show($avaliador)
     {
+        $avaliador = Avaliador::find($avaliador);
         return view('avaliadores.show', compact('avaliador'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Avaliador $avaliador)
+    public function edit($avaliador)
     {
+        $avaliador = Avaliador::find($avaliador);
         return view('avaliadores.edit', compact('avaliador'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(AvaliadorRequest $request, Avaliador $avaliador)
+    public function update(AvaliadorRequest $request, $avaliador)
     {
+        $avaliador = Avaliador::find($avaliador);
         $avaliador->update($request->validated());
         return redirect()->route('avaliadores.index')->with('success', 'Avaliador atualizado com sucesso.');
     }
@@ -68,8 +86,9 @@ class AvaliadorController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Avaliador $avaliador)
+    public function destroy($avaliador)
     {
+        $avaliador = Avaliador::find($avaliador);
         $avaliador->delete();
         return redirect()->route('avaliadores.index')->with('success', 'Avaliador deletado com sucesso.');
     }

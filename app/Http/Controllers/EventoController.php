@@ -17,9 +17,23 @@ class EventoController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $eventos = Evento::all();
+        $query = Evento::query();
+        $columns = ['nome'];
+        $orderby = 'nome';
+        $paginate = 10;
+
+        if ($request->filled('nome')) {
+            $query->where(function ($query) use ($request, $columns) {
+                foreach ($columns as $column) {
+                    $query->orWhere($column, 'like', '%' . $request->nome . '%');
+                }
+            });
+        }
+
+        $eventos = $query->orderBy($orderby, 'asc')->paginate($paginate);
+
         return view('eventos.index', compact('eventos'));
     }
 

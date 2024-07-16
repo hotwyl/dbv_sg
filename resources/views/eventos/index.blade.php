@@ -7,42 +7,66 @@
 @stop
 
 @section('content')
-    <a href="{{ route('eventos.create') }}" class="btn btn-primary mb-3">Adicionar Evento</a>
-    @if (session('success'))
-        <div class="alert alert-success">
-            {{ session('success') }}
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Evento</li>
+        </ol>
+    </nav>
+
+    <form action="{{ route('eventos.index') }}" method="GET">
+        <div class="row">
+            <div class="col-md-2">
+                <a href="{{ route('eventos.create') }}" class="btn btn-success btn-sm mb-3">Adicionar Eevento</a>
+            </div>
+            <div class="col-md">
+                <input type="text" name="nome" class="form-control form-control-sm" placeholder="Nome do Evento" value="{{ request()->get('nome') }}">
+            </div>
+            <div class="col-md-2">
+                <button type="submit" class="btn btn-primary btn-sm">Pesquisar</button>
+                <a href="{{ route('eventos.index') }}" class="btn btn-secondary btn-sm">Limpar</a>
+            </div>
         </div>
-    @endif
-    <table class="table table-bordered">
+    </form>
+
+    <x-mensagem />
+
+    <table class="table table-bordered table-striped table-hover mt-3">
         <thead>
         <tr>
-            <th>ID</th>
             <th>Nome</th>
             <th>Descrição</th>
             <th>Valor</th>
-            <th>Status</th>
             <th>Ações</th>
         </tr>
         </thead>
         <tbody>
-        @foreach ($eventos as $evento)
+        @forelse ($eventos as $evento)
             <tr>
-                <td>{{ $evento->id_evento }}</td>
                 <td>{{ $evento->nome }}</td>
                 <td>{{ $evento->descricao }}</td>
                 <td>{{ $evento->valor }}</td>
-                <td>{{ $evento->status ? 'Ativo' : 'Inativo' }}</td>
-                <td>
-                    <a href="{{ route('eventos.show', $evento->id_evento) }}" class="btn btn-info">Ver</a>
-                    <a href="{{ route('eventos.edit', $evento->id_evento) }}" class="btn btn-warning">Editar</a>
-                    <form action="{{ route('eventos.destroy', $evento->id_evento) }}" method="POST" style="display:inline;">
+                <td class="d-flex justify-content-around">
+                    <a href="{{ route('eventos.show', $evento->id_evento) }}" class="btn btn-info btn-sm">Mostrar</a>
+                    <a href="{{ route('eventos.edit', $evento->id_evento) }}" class="btn btn-primary btn-sm">Editar</a>
+                    <form action="{{ route('eventos.destroy', $evento->id_evento) }}" method="POST" style="display:inline;" onsubmit="return confirm('Tem certeza que deseja excluir o Evento {{$evento->nome}} ?')">
                         @csrf
                         @method('DELETE')
-                        <button type="submit" class="btn btn-danger">Deletar</button>
+                        <button type="submit" class="btn btn-danger btn-sm">Deletar</button>
                     </form>
                 </td>
             </tr>
-        @endforeach
+        @empty
+            <tr>
+                <td colspan="6">Nenhum registro encontrado.</td>
+            </tr>
+        @endforelse
         </tbody>
     </table>
-@stop
+
+    @if($eventos->total() > $eventos->perPage())
+        <div class="mt-1 py-2">
+            {{ $eventos->appends(request()->query())->links('pagination::bootstrap-5') }}
+        </div>
+    @endif
+@endsection

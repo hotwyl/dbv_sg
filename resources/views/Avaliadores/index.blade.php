@@ -4,43 +4,67 @@
 
 @section('content_header')
     <h1>Avaliadores</h1>
-@stop
+@endsection
 
 @section('content')
-    <a href="{{ route('avaliadores.create') }}" class="btn btn-primary mb-3">Adicionar Avaliador</a>
-    @if (session('success'))
-        <div class="alert alert-success">
-            {{ session('success') }}
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Avaliadores</li>
+        </ol>
+    </nav>
+
+    <form action="{{ route('avaliadores.index') }}" method="GET">
+        <div class="row">
+            <div class="col-md-2">
+                <a href="{{ route('avaliadores.create') }}" class="btn btn-success btn-sm mb-3">Adicionar Avaliador(a)</a>
+            </div>
+            <div class="col-md">
+                <input type="text" name="nome" class="form-control form-control-sm" placeholder="Nome do Avaliador(a)" value="{{ request()->get('nome') }}">
+            </div>
+            <div class="col-md-2">
+                <button type="submit" class="btn btn-primary btn-sm">Pesquisar</button>
+                <a href="{{ route('avaliadores.index') }}" class="btn btn-secondary btn-sm">Limpar</a>
+            </div>
         </div>
-    @endif
-    <table class="table table-bordered">
+    </form>
+
+    <x-mensagem />
+
+    <table class="table table-bordered table-striped table-hover mt-3">
         <thead>
-        <tr>
-            <th>ID</th>
-            <th>Nome</th>
-            <th>Descrição</th>
-            <th>Status</th>
-            <th>Ações</th>
-        </tr>
+            <tr>
+                <th>Nome</th>
+                <th>Descrição</th>
+                <th>Ações</th>
+            </tr>
         </thead>
         <tbody>
-        @foreach ($avaliadores as $avaliador)
+        @forelse ($avaliadores as $avaliador)
             <tr>
-                <td>{{ $avaliador->id_avaliador }}</td>
                 <td>{{ $avaliador->nome }}</td>
                 <td>{{ $avaliador->descricao }}</td>
-                <td>{{ $avaliador->status ? 'Ativo' : 'Inativo' }}</td>
-                <td>
-                    <a href="{{ route('avaliadores.show', $avaliador->id_avaliador) }}" class="btn btn-info">Ver</a>
-                    <a href="{{ route('avaliadores.edit', $avaliador->id_avaliador) }}" class="btn btn-warning">Editar</a>
-                    <form action="{{ route('avaliadores.destroy', $avaliador->id_avaliador) }}" method="POST" style="display:inline;">
+                <td class="d-flex justify-content-around">
+                    <a href="{{ route('avaliadores.show', $avaliador->id_avaliador) }}" class="btn btn-info btn-sm">Mostrar</a>
+                    <a href="{{ route('avaliadores.edit', $avaliador->id_avaliador) }}" class="btn btn-primary btn-sm">Editar</a>
+                    <form action="{{ route('avaliadores.destroy', $avaliador->id_avaliador) }}" method="POST" style="display:inline;" onsubmit="return confirm('Tem certeza que deseja excluir a avaliador(a) {{$avaliador->nome}} ?')">
                         @csrf
                         @method('DELETE')
-                        <button type="submit" class="btn btn-danger">Deletar</button>
+                        <button type="submit" class="btn btn-danger btn-sm">Deletar</button>
                     </form>
                 </td>
             </tr>
-        @endforeach
+        @empty
+            <tr>
+                <td colspan="6">Nenhum registro encontrado.</td>
+            </tr>
+        @endforelse
         </tbody>
     </table>
-@stop
+
+    @if($avaliadores->total() > $avaliadores->perPage())
+        <div class="mt-1 py-2">
+            {{ $avaliadores->appends(request()->query())->links('pagination::bootstrap-5') }}
+        </div>
+    @endif
+@endsection
