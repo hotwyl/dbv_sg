@@ -1,6 +1,7 @@
 <?php
 
-use App\Http\Controllers\AtividadeController;
+use App\Http\Controllers\EventoController;
+use App\Http\Controllers\RankingController;
 use App\Http\Controllers\AvaliadorController;
 use App\Http\Controllers\CargoController;
 use App\Http\Controllers\ClubeController;
@@ -40,4 +41,6 @@ Route::resource('desbravadores', DesbravadorController::class);
 
 Route::resource('avaliadores', AvaliadorController::class);
 
-Route::resource('atividades', AtividadeController::class);
+Route::resource('ranking', RankingController::class);
+
+Route::resource('eventos', EventoController::class);

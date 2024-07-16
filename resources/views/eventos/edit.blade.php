@@ -1,16 +1,16 @@
 @extends('adminlte::page')
 
-@section('title', 'Editar Atividade')
+@section('title', 'Editar Evento')
 
 @section('content_header')
-    <h1>Editar Atividade</h1>
+    <h1>Editar Evento</h1>
 @stop
 
 @section('content')
-    <form action="{{ route('atividades.update', $atividade->id_atividade) }}" method="POST">
+    <form action="{{ route('eventos.update', $evento->id_evento) }}" method="POST">
         @csrf
         @method('PUT')
-        @include('atividades.form_fields')
+        @include('eventos.form_fields')
         <button type="submit" class="btn btn-primary">Atualizar</button>
     </form>
 @stop

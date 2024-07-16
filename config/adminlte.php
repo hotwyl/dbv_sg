@@ -341,14 +341,14 @@ return [
             'icon_color' => 'purple',
         ],
         [
-            'text' => 'Atividades',
-            'url' => 'atividades',
+            'text' => 'Ranking',
+            'url' => 'ranking',
             'icon' => 'far fa-fw fa-file',
             'icon_color' => 'orange',
         ],
         [
-            'text' => 'Avaliacões',
-            'url' => 'avaliacoes',
+            'text' => 'Eventos',
+            'url' => 'eventos',
             'icon' => 'far fa-fw fa-file',
             'icon_color' => 'blue',
         ]

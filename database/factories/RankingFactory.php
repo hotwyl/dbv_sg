@@ -2,15 +2,15 @@
 
 namespace Database\Factories;
 
-use App\Models\Atividade;
+use App\Models\Ranking;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Atividade>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Ranking>
  */
-class AtividadeFactory extends Factory
+class RankingFactory extends Factory
 {
-    protected $model = Atividade::class;
+    protected $model = Ranking::class;
 
     /**
      * Define the model's default state.
