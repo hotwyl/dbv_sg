@@ -49,7 +49,7 @@
                 <td class="d-flex justify-content-around">
                     <a href="{{ route('eventos.show', $evento->id_evento) }}" class="btn btn-info btn-sm">Mostrar</a>
                     <a href="{{ route('eventos.edit', $evento->id_evento) }}" class="btn btn-primary btn-sm">Editar</a>
-                    <form action="{{ route('eventos.destroy', $evento->id_evento) }}" method="POST" style="display:inline;" onsubmit="return confirm('Tem certeza que deseja excluir o Evento {{$evento->nome}} ?')">
+                    <form action="{{ route('eventos.destroy', $evento->id_evento) }}" method="POST" style="display:inline;" onsubmit="return confirm('Tem certeza que deseja excluir o Avaliacao {{$evento->nome}} ?')">
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="btn btn-danger btn-sm">Deletar</button>

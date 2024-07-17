@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Detalhes do Evento')
+@section('title', 'Detalhes do Avaliacao')
 
 @section('content_header')
     <h1>Detalhes do Evento</h1>
@@ -24,6 +24,7 @@
                     <div class="card-body">
                         <p><strong>Nome:</strong> {{ $evento->nome }}</p>
                         <p><strong>Descrição:</strong> {{ $evento->descricao }}</p>
+                        <p><strong>Categoria:</strong> {{ $evento->tipo_item }}</p>
                         <p><strong>Valor:</strong> {{ $evento->valor }}</p>
                         <p><strong>Status:</strong> {{ $evento->status ? 'Ativo' : 'Inativo' }}</p>
                     </div>
@@ -31,7 +32,7 @@
                     <div class="d-flex justify-content-around">
                         <a href="{{ route('eventos.index') }}" class="btn btn-secondary btn-sm">Voltar</a>
                         <a href="{{ route('eventos.edit', $evento->id_evento) }}" class="btn btn-primary btn-sm">Editar</a>
-                        <form action="{{ route('eventos.destroy', $evento->id_evento) }}" method="post" onsubmit="return confirm('Tem certeza que deseja excluir o Evento {{$evento->nome}} ?')">
+                        <form action="{{ route('eventos.destroy', $evento->id_evento) }}" method="post" onsubmit="return confirm('Tem certeza que deseja excluir o Avaliacao {{$evento->nome}} ?')">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-danger btn-sm">Excluir</button>

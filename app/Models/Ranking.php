@@ -11,5 +11,5 @@ class Ranking extends Model
 
     protected $table = 'ranking';
     protected $primaryKey = 'id_ranking';
-    protected $fillable = ['nome', 'descricao', 'valor', 'status'];
+    protected $fillable = ['nome', 'descricao', 'categoria', 'tipo_item', 'valor', 'status'];
 }

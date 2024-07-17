@@ -11,11 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('eventos', function (Blueprint $table) {
-            $table->id('id_evento');
+        Schema::create('avaliacoes', function (Blueprint $table) {
+            $table->id('id_avaliacao');
             $table->string('nome', 100);
             $table->string('descricao', 255)->nullable();
-            $table->integer('valor');
+            $table->enum('tipo', ['ranking', 'evento', 'desafio'])->default('ranking');
+            $table->enum('categoria', ['clube', 'unidade', 'individual'])->default('clube');
             $table->boolean('status')->default(true);
             $table->timestamps();
         });
@@ -26,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('eventos');
+        Schema::dropIfExists('avaliacoes');
     }
 };

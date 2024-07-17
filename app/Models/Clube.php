@@ -27,4 +27,9 @@ class Clube extends Model
     {
         return $this->hasMany(Unidade::class, 'id_clube');
     }
+
+    public function rankingClubes()
+    {
+        return $this->hasMany(RankingClube::class, 'id_clube');
+    }
 }

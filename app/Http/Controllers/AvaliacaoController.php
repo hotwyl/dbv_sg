@@ -7,7 +7,7 @@ use App\Http\Requests\EventoRequest;
 use App\Models\Avaliacao;
 use Illuminate\Http\Request;
 
-class EventoController extends Controller
+class AvaliacaoController extends Controller
 {
     public function __construct()
     {
@@ -24,6 +24,14 @@ class EventoController extends Controller
         $orderby = 'nome';
         $paginate = 10;
 
+        if ($request->filled('tipo')) {
+            $query->where('tipo', $request->tipo);
+        }
+
+        if ($request->filled('categoria')) {
+            $query->where('categoria', $request->categoria);
+        }
+
         if ($request->filled('nome')) {
             $query->where(function ($query) use ($request, $columns) {
                 foreach ($columns as $column) {
@@ -32,9 +40,9 @@ class EventoController extends Controller
             });
         }
 
-        $eventos = $query->orderBy($orderby, 'asc')->paginate($paginate);
+        $avaliacoes = $query->orderBy($orderby, 'asc')->paginate($paginate);
 
-        return view('eventos.index', compact('eventos'));
+        return view('avaliacoes.index', compact('avaliacoes'));
     }
 
     /**
@@ -42,7 +50,7 @@ class EventoController extends Controller
      */
     public function create()
     {
-        return view('eventos.create');
+        return view('avaliacoes.create');
     }
 
     /**
@@ -51,40 +59,44 @@ class EventoController extends Controller
     public function store(EventoRequest $request)
     {
         Avaliacao::create($request->validated());
-        return redirect()->route('eventos.index')->with('success', 'Avaliacao criado com sucesso.');
+        return redirect()->route('avaliacoes.index')->with('success', 'Avaliacao criado com sucesso.');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Avaliacao $evento)
+    public function show($avaliacao)
     {
-        return view('eventos.show', compact('evento'));
+        $avaliacao = Avaliacao::find($avaliacao);
+        return view('avaliacoes.show', compact('avaliacao'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Avaliacao $evento)
+    public function edit( $avaliacao)
     {
-        return view('eventos.edit', compact('evento'));
+        $avaliacao = Avaliacao::find($avaliacao);
+        return view('avaliacoes.edit', compact('avaliacao'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(EventoRequest $request, Avaliacao $evento)
+    public function update(EventoRequest $request, $avaliacao)
     {
-        $evento->update($request->validated());
-        return redirect()->route('eventos.index')->with('success', 'Avaliacao atualizado com sucesso.');
+        $avaliacao = Avaliacao::find($avaliacao);
+        $avaliacao->update($request->validated());
+        return redirect()->route('avaliacoes.index')->with('success', 'Avaliacao atualizado com sucesso.');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Avaliacao $evento)
+    public function destroy($avaliacao)
     {
-        $evento->delete();
-        return redirect()->route('eventos.index')->with('success', 'Avaliacao deletado com sucesso.');
+        $avaliacao = Avaliacao::find($avaliacao);
+        $avaliacao->delete();
+        return redirect()->route('avaliacoes.index')->with('success', 'Avaliacao deletado com sucesso.');
     }
 }

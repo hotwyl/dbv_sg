@@ -15,7 +15,7 @@
         </ol>
     </nav>
     <div class="card">
-        <div class="card-header">
+        <div class="card-header text-center">
             <h5>Informações do Clube</h5>
         </div>
         <div class="card-body">
@@ -37,6 +37,14 @@
                     <ul>
                         @foreach ($clube->unidades as $unidade)
                             <li><a href="{{ route('unidades.show', $unidade->id_unidade) }}">{{ $unidade->nome }}</a></li>
+                        @endforeach
+                    </ul>
+                </div>
+                <div class="col-md">
+                    <h5>Avaliacoes Ranking</h5>
+                    <ul>
+                        @foreach ($clube->rankingClubes as $avaliacao)
+                            <li><a href="{{ route('unidades.show', $avaliacao->avaliacao->id_avaliacao) }}">{{ $avaliacao->avaliacao->nome }}</a></li>
                         @endforeach
                     </ul>
                 </div>

@@ -309,7 +309,7 @@ return [
             'url' => 'admin/settings',
             'icon' => 'fas fa-fw fa-lock',
         ],
-        ['header' => 'labels'],
+        ['header' => 'Cadastros'],
         [
             'text' => 'Clubes',
             'url' => 'clubes',
@@ -335,16 +335,29 @@ return [
             'icon_color' => 'green',
         ],
         [
-            'text' => 'Avaliadores',
+            'text' => 'avaliadores',
             'url' => 'avaliadores',
             'icon' => 'far fa-fw fa-file',
             'icon_color' => 'purple',
         ],
         [
-            'text' => 'Ranking',
-            'url' => 'ranking',
+            'text' => 'Avaliações',
+            'url' => 'avaliacoes',
             'icon' => 'far fa-fw fa-file',
             'icon_color' => 'orange',
+        ],
+        ['header' => 'Avaliações'],
+        [
+            'text' => 'Ranking Clubes',
+            'url' => 'ranking_clubes',
+            'icon' => 'far fa-fw fa-file',
+            'icon_color' => 'pink',
+        ],
+        [
+            'text' => 'Ranking Unidades',
+            'url' => 'ranking_unidades',
+            'icon' => 'far fa-fw fa-file',
+            'icon_color' => 'pink',
         ],
         [
             'text' => 'Eventos',

@@ -2,15 +2,15 @@
 
 namespace Database\Factories;
 
-use App\Models\Evento;
+use App\Models\Avaliacao;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Evento>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Avaliacao>
  */
 class EventoFactory extends Factory
 {
-    protected $model = Evento::class;
+    protected $model = Avaliacao::class;
 
     /**
      * Define the model's default state.

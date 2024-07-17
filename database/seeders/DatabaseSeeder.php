@@ -20,8 +20,9 @@ class DatabaseSeeder extends Seeder
             CargoSeeder::class,
             DesbravadorSeeder::class,
             AvaliadorSeeder::class,
-            RankingSeeder::class,
-            EventoSeeder::class,
+            AvaliacaoSeeder::class,
+            RankingClubeSeeder::class,
+            RankingUnidadeSeeder::class,
         ]);
     }
 }

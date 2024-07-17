@@ -22,4 +22,9 @@ class Unidade extends Model
     {
         return $this->hasMany(Desbravador::class, 'id_unidade');
     }
+
+    public function rankingUnidades()
+    {
+        return $this->hasMany(RankingUnidade::class, 'id_unidade');
+    }
 }

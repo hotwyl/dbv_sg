@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class EventoRequest extends FormRequest
+class AvaliacaoRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,8 +24,9 @@ class EventoRequest extends FormRequest
         return [
             'nome' => 'required|string|max:100',
             'descricao' => 'nullable|string|max:255',
+            'categoria' => 'required|in:ranking,evento,desafio',
+            'tipo_item' => 'required|in:clube,unidade,desbravador',
             'valor' => 'required|integer',
-            'tipo_item' => 'required|in:clube,unidade,individual',
             'status' => 'required|boolean',
         ];
     }

@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class RankingRequest extends FormRequest
+class RankingClubeRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,10 +22,11 @@ class RankingRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'nome' => 'required|string|max:100',
-            'descricao' => 'nullable|string|max:255',
-            'valor' => 'required|integer',
-            'status' => 'required|boolean',
+            'id_atividade' => 'required|exists:atividades,id_atividade',
+            'id_avaliador' => 'required|exists:avaliadores,id_avaliador',
+            'id_clube' => 'required|exists:clubes,id_clube',
+            'pontuacao' => 'required|integer',
+            'data_hora' => 'nullable|date',
         ];
     }
 }

@@ -24,15 +24,15 @@
                 <div class="card-body">
                     <p><strong>Nome:</strong> {{ $ranking->avaliacao->nome }}</p>
                     <p><strong>Descrição:</strong> {{ $ranking->avaliacao->descricao }}</p>
-                    <p><strong>Avaliador:</strong> {{ $ranking->avaliador->nome }}</p>
-                    <p><strong>Clube:</strong> {{ $ranking->clube->nome }}</p>
-                    <p><strong>Pontuação:</strong> {{ $ranking->pontuacao ? 'Ativo' : 'Inativo' }}</p>
+                    <p><strong>Avaliador:</strong> <a href="{{ route('avaliadores.show', $ranking->avaliador->id_avaliador) }}">{{ $ranking->avaliador->nome }}</a></p>
+                    <p><strong>Clube:</strong> <a href="{{ route('clubes.show', $ranking->clube->id_clube) }}">{{ $ranking->clube->nome }}</a></p>
+                    <p><strong>Pontuação:</strong> {{ $ranking->pontuacao }}</p>
                 </div>
                 <div class="card-footer">
                     <div class="d-flex justify-content-around">
-                        <a href="{{ route('ranking.index') }}" class="btn btn-secondary btn-sm">Voltar</a>
-                        <a href="{{ route('ranking.edit', $ranking->avaliacao->id_avaliacao) }}" class="btn btn-primary btn-sm">Editar</a>
-                        <form action="{{ route('ranking.destroy', $ranking->avaliacao->id_avaliacao) }}" method="post" onsubmit="return confirm('Tem certeza que deseja excluir o item Ranking {{$ranking->avaliacao->nome}} ?')">
+                        <a href="{{ route('ranking_clubes.index') }}" class="btn btn-secondary btn-sm">Voltar</a>
+                        <a href="{{ route('ranking_clubes.edit', $ranking->avaliacao->id_avaliacao) }}" class="btn btn-primary btn-sm">Editar</a>
+                        <form action="{{ route('ranking_clubes.destroy', $ranking->avaliacao->id_avaliacao) }}" method="post" onsubmit="return confirm('Tem certeza que deseja excluir o item Ranking {{$ranking->avaliacao->nome}} ?')">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-danger btn-sm">Excluir</button>

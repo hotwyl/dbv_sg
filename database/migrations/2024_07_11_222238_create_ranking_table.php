@@ -13,10 +13,6 @@ return new class extends Migration
     {
         Schema::create('ranking', function (Blueprint $table) {
             $table->id('id_ranking');
-            $table->string('nome', 100);
-            $table->string('descricao', 255)->nullable();
-            $table->integer('valor');
-            $table->boolean('status')->default(true);
             $table->timestamps();
         });
     }

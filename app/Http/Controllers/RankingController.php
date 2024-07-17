@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Ranking;
-use App\Http\Requests\RankingRequest;
+use App\Http\Requests\AvaliacaoRequest;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -48,7 +48,7 @@ class RankingController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(RankingRequest $request)
+    public function store(AvaliacaoRequest $request)
     {
         Ranking::create($request->validated());
         return redirect()->route('ranking.index')->with('success', 'Ranking criada com sucesso.');
@@ -73,7 +73,7 @@ class RankingController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(RankingRequest $request, Ranking $ranking)
+    public function update(AvaliacaoRequest $request, Ranking $ranking)
     {
         $ranking->update($request->validated());
         return redirect()->route('ranking.index')->with('success', 'Ranking atualizada com sucesso.');
