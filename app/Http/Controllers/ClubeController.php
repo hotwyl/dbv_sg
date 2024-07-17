@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Clube;
+use App\Models\EventoClube;
 use App\Models\RankingClube;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreClubeRequest;
@@ -58,10 +59,17 @@ class ClubeController extends Controller
 
     public function show(Clube $clube)
     {
-        //total pontuacao ranking_clube
-        $rankingClube = RankingClube::where('id_clube', $clube->id_clube)->sum('pontuacao');
+        //total pontuacao ranking_clube (somando pontuacao) quando avaliação for do tipo ranking
+        $rankingClube = RankingClube::where('id_clube', $clube->id_clube)->whereHas('avaliacao', function ($query) {
+            $query->where('tipo', 'ranking');
+        })->orderBy('pontuacao', 'desc')->get();
 
-        return view('clubes.show', compact('clube', 'rankingClube'));
+        //total de eventos realizados clubes (somando todos acertos, somando todos erros crescente somando duração)
+        $eventosClube = EventoClube::where('id_clube', $clube->id_clube)->whereHas('avaliacao', function ($query) {
+            $query->where('tipo', 'evento');
+        })->orderBy('duracao', 'asc')->orderBy('pontuacao', 'desc')->orderBy('acertos', 'desc')->orderBy('erros', 'asc')->get();
+
+        return view('clubes.show', compact('clube', 'rankingClube', 'eventosClube'));
     }
 
     public function edit(Clube $clube)

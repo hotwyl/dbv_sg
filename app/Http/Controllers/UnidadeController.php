@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Clube;
+use App\Models\EventoUnidade;
 use App\Models\RankingClube;
 use App\Models\RankingUnidade;
 use App\Models\Unidade;
@@ -65,10 +66,18 @@ class UnidadeController extends Controller
      */
     public function show(Unidade $unidade)
     {
-        //total pontuacao ranking_clube
-        $rankingUnidade = RankingUnidade::where('id_unidade', $unidade->id_unidade)->sum('pontuacao');
+        //total pontuacao ranking_clube (somando pontuacao) quando avaliação for do tipo ranking
+        $rankingUnidade = RankingUnidade::where('id_unidade', $unidade->id_unidade)->whereHas('avaliacao', function ($query) {
+            $query->where('tipo', 'ranking');
+        })->orderBy('pontuacao', 'desc')->get();
 
-        return view('unidades.show', compact('unidade', 'rankingUnidade'));
+        //total de eventos realizados clubes (somando todos acertos, somando todos erros crescente somando duração)
+        $eventosUnidade = EventoUnidade::where('id_unidade', $unidade->id_unidade)->whereHas('avaliacao', function ($query) {
+            $query->where('tipo', 'evento');
+        })->orderBy('duracao', 'asc')->orderBy('pontuacao', 'desc')->orderBy('acertos', 'desc')->orderBy('erros', 'asc')->get();
+
+
+        return view('unidades.show', compact('unidade', 'rankingUnidade', 'eventosUnidade'));
     }
 
     /**

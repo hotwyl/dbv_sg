@@ -38,19 +38,10 @@
                     </ul>
                 </div>
 
-                <div class="col-md">
-                    <h5>Avaliacoes Ranking</h5>
-                    <p><small class="text-muted">Pontuação da Unidade:</small> {{$rankingUnidade}}</p>
-                    <ul>
-                        @foreach ($unidade->rankingUnidades as $avaliacao)
-                            <li><a href="{{ route('unidades.show', $avaliacao->avaliacao->id_avaliacao) }}">{{ $avaliacao->avaliacao->nome }} ({{ $avaliacao->pontuacao }})</a></li>
-                        @endforeach
-                    </ul>
-                </div>
             </div>
         </div>
         <div class="card-footer">
-            <div class="d-flex justify-content-around">
+            <div class="d-flex justify-content-around my-3">
                 <a href="{{ route('unidades.index') }}" class="btn btn-secondary btn-sm">Voltar</a>
                 <a href="{{ route('unidades.edit', $unidade->id_unidade) }}" class="btn btn-primary btn-sm">Editar</a>
                 <form action="{{ route('unidades.destroy', $unidade->id_unidade) }}" method="post" onsubmit="return confirm('Tem certeza que deseja excluir a unidade {{$unidade->nome}} ?')">
@@ -58,6 +49,83 @@
                     @method('DELETE')
                     <button type="submit" class="btn btn-danger btn-sm">Excluir</button>
                 </form>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row pb-5">
+        <div class="col-md">
+            <div class="card">
+                <div class="card-header text-center">
+                    <h5>Avaliacoes Ranking</h5>
+                </div>
+                <div class="card-body">
+                    <table class="table table-bordered table-striped table-hover">
+                        <thead>
+                        <tr>
+                            <th>Item Avaliado</th>
+                            <th>Pontuação</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach ($rankingUnidade as $avaliacao)
+                            <tr>
+                                <td><a href="{{ route('ranking_unidades.show', $avaliacao->id_ranking_unidade) }}">{{ $avaliacao->avaliacao->nome }}</a></td>
+                                <td><a href="{{ route('ranking_unidades.show', $avaliacao->id_ranking_unidade) }}">{{ $avaliacao->pontuacao }}</a></td>
+                            </tr>
+                        @endforeach
+                        </tbody>
+                        <tfoot>
+                        <tr>
+                            <td><small class="text-muted">Totais</small></td>
+                            <td><small class="text-muted">{{$rankingUnidade->sum('pontuacao')}}</small></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md">
+            <div class="card">
+                <div class="card-header text-center">
+                    <h5>Avaliacoes Eventos</h5>
+                </div>
+
+                <div class="card-header text-center">
+
+                    <table class="table table-bordered table-striped table-hover">
+                        <thead>
+                        <tr>
+                            <th>Evento</th>
+                            <th>Pontuação</th>
+                            <th>Acertos</th>
+                            <th>Erros</th>
+                            <th>Duração</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach ($eventosUnidade as $avaliacao)
+                            <tr>
+                                <td><a href="{{ route('eventos_unidades.show', $avaliacao->id_evento_unidade) }}">{{ $avaliacao->avaliacao->nome }}</a></td>
+                                <td><a href="{{ route('eventos_unidades.show', $avaliacao->id_evento_unidade) }}">{{ $avaliacao->pontuacao }}</a></td>
+                                <td><a href="{{ route('eventos_unidades.show', $avaliacao->id_evento_unidade) }}">{{ $avaliacao->acertos }}</a></td>
+                                <td><a href="{{ route('eventos_unidades.show', $avaliacao->id_evento_unidade) }}">{{ $avaliacao->erros }}</a></td>
+                                <td><a href="{{ route('eventos_unidades.show', $avaliacao->id_evento_unidade) }}">{{ $avaliacao->duracao }}</a></td>
+                            </tr>
+                        @endforeach
+                        </tbody>
+                        <tfoot>
+                        <tr>
+                            <td><small class="text-muted">Totais</small></td>
+                            <td><small class="text-muted">{{$eventosUnidade->sum('pontuacao')}}</small></td>
+                            <td><small class="text-muted">{{$eventosUnidade->sum('acertos')}}</small></td>
+                            <td><small class="text-muted">{{$eventosUnidade->sum('erros')}}</small></td>
+                            <td><small class="text-muted"></small></td>
+                        </tr>
+                        </tfoot>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
