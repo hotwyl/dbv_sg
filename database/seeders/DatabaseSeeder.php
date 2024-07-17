@@ -23,6 +23,8 @@ class DatabaseSeeder extends Seeder
             AvaliacaoSeeder::class,
             RankingClubeSeeder::class,
             RankingUnidadeSeeder::class,
+            EventoClubeSeeder::class,
+            EventosUnidadeSeeder::class,
         ]);
     }
 }

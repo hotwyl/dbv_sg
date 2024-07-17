@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\AvaliacaoController;
+use App\Http\Controllers\EventoClubeController;
 use App\Http\Controllers\EventoController;
+use App\Http\Controllers\EventoUnidadeController;
 use App\Http\Controllers\RankingClubeController;
 use App\Http\Controllers\RankingController;
 use App\Http\Controllers\AvaliadorController;
@@ -52,3 +54,7 @@ Route::resource('avaliacoes', AvaliacaoController::class);
 Route::resource('ranking_clubes', RankingClubeController::class);
 
 Route::resource('ranking_unidades', RankingUnidadeController::class);
+
+Route::resource('eventos_clubes', EventoClubeController::class);
+
+Route::resource('eventos_unidades', EventoUnidadeController::class);

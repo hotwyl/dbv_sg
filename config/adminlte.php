@@ -360,11 +360,17 @@ return [
             'icon_color' => 'pink',
         ],
         [
-            'text' => 'Eventos',
-            'url' => 'eventos',
+            'text' => 'Eventos Clubes',
+            'url' => 'eventos_clubes',
             'icon' => 'far fa-fw fa-file',
             'icon_color' => 'blue',
-        ]
+        ],
+        [
+            'text' => 'Eventos Unidades',
+            'url' => 'eventos_unidades',
+            'icon' => 'far fa-fw fa-file',
+            'icon_color' => 'blue',
+        ],
     ],
 
     /*
