@@ -48,10 +48,10 @@ class RankingClubeController extends Controller
      */
     public function create()
     {
-        $atividades = Avaliacao::all();
+        $avaliacoes = Avaliacao::all();
         $avaliadores = Avaliador::all();
         $clubes = Clube::all();
-        return view('ranking_clubes.create', compact('atividades', 'avaliadores', 'clubes'));
+        return view('ranking_clubes.create', compact('avaliacoes', 'avaliadores', 'clubes'));
     }
 
     /**
@@ -78,27 +78,31 @@ class RankingClubeController extends Controller
     public function edit($rankingClube)
     {
         $ranking = RankingClube::find($rankingClube);
-        $atividades = Avaliacao::all();
+        $avaliacoes = Avaliacao::all();
         $avaliadores = Avaliador::all();
         $clubes = Clube::all();
-        return view('ranking_clubes.edit', compact('ranking', 'atividades', 'avaliadores', 'clubes'));
+        return view('ranking_clubes.edit', compact('ranking', 'avaliacoes', 'avaliadores', 'clubes'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(RankingClubeRequest $request, RankingClube $rankingClube)
+    public function update(RankingClubeRequest $request, $rankingClube)
     {
-        $rankingClube->update($request->validated());
+        $ranking = RankingClube::find($rankingClube);
+        $ranking->update($request->validated());
         return redirect()->route('ranking_clubes.index')->with('success', 'Ranking Clube atualizado com sucesso.');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(RankingClube $rankingClube)
+    public function destroy($rankingClube)
     {
-        $rankingClube->delete();
+        $ranking = RankingClube::find($rankingClube);
+        $ranking->delete();
         return redirect()->route('ranking_clubes.index')->with('success', 'Ranking Clube deletado com sucesso.');
     }
+
+
 }

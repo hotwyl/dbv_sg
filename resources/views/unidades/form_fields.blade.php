@@ -1,3 +1,5 @@
+<x-mensagem />
+
 <div class="input-group my-5">
     <div class="input-group-prepend">
         <span class="input-group-text">Clube:</span>

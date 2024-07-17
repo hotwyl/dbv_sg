@@ -1,3 +1,5 @@
+<x-mensagem />
+
 <div class="input-group my-5">
     <span class="input-group-text">Unidade:</span>
     <select class="form-control" id="id_unidade" name="id_unidade" required>

@@ -31,8 +31,8 @@
                 <div class="card-footer">
                     <div class="d-flex justify-content-around">
                         <a href="{{ route('ranking_clubes.index') }}" class="btn btn-secondary btn-sm">Voltar</a>
-                        <a href="{{ route('ranking_clubes.edit', $ranking->avaliacao->id_avaliacao) }}" class="btn btn-primary btn-sm">Editar</a>
-                        <form action="{{ route('ranking_clubes.destroy', $ranking->avaliacao->id_avaliacao) }}" method="post" onsubmit="return confirm('Tem certeza que deseja excluir o item Ranking {{$ranking->avaliacao->nome}} ?')">
+                        <a href="{{ route('ranking_clubes.edit', $ranking->id_ranking_clube) }}" class="btn btn-primary btn-sm">Editar</a>
+                        <form action="{{ route('ranking_clubes.destroy', $ranking->id_ranking_clube) }}" method="post" onsubmit="return confirm('Tem certeza que deseja excluir o item Ranking {{$ranking->avaliacao->nome}} ?')">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-danger btn-sm">Excluir</button>

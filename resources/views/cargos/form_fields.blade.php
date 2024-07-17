@@ -1,3 +1,5 @@
+<x-mensagem />
+
 <div class="form-group my-5">
     <label for="nome">Nome</label>
     <input type="text" class="form-control form-control-sm" id="nome" name="nome" value="{{ old('nome', $cargo->nome ?? '') }}" required>

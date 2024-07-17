@@ -42,9 +42,10 @@
                 </div>
                 <div class="col-md">
                     <h5>Avaliacoes Ranking</h5>
+                    <p><small class="text-muted">Pontuação do Clube:</small> {{$rankingClube}}</p>
                     <ul>
                         @foreach ($clube->rankingClubes as $avaliacao)
-                            <li><a href="{{ route('unidades.show', $avaliacao->avaliacao->id_avaliacao) }}">{{ $avaliacao->avaliacao->nome }}</a></li>
+                            <li><a href="{{ route('unidades.show', $avaliacao->avaliacao->id_avaliacao) }}">{{ $avaliacao->avaliacao->nome }} ({{ $avaliacao->pontuacao }})</a></li>
                         @endforeach
                     </ul>
                 </div>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Clube;
+use App\Models\RankingClube;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreClubeRequest;
 use App\Http\Requests\UpdateClubeRequest;
@@ -57,7 +58,10 @@ class ClubeController extends Controller
 
     public function show(Clube $clube)
     {
-        return view('clubes.show', compact('clube'));
+        //total pontuacao ranking_clube
+        $rankingClube = RankingClube::where('id_clube', $clube->id_clube)->sum('pontuacao');
+
+        return view('clubes.show', compact('clube', 'rankingClube'));
     }
 
     public function edit(Clube $clube)

@@ -11,11 +11,11 @@
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
             <li class="breadcrumb-item"><a href="{{ route('ranking_clubes.index') }}">Ranking</a></li>
-            <li class="breadcrumb-item active" aria-current="page">{{ $ranking->avaliacao->nome }} - Editar</li>
+            <li class="breadcrumb-item active" aria-current="page">{{ $ranking->id_ranking_clube }} - Editar</li>
         </ol>
     </nav>
 
-    <form action="{{ route('ranking_clubes.update', $ranking->avaliacao->id_avaliacao) }}" method="POST">
+    <form action="{{ route('ranking_clubes.update', $ranking->id_ranking_clube) }}" method="POST">
         @csrf
         @method('PUT')
         @include('ranking_clubes.form_fields')

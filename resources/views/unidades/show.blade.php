@@ -10,7 +10,7 @@
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
-            <li class="breadcrumb-item"><a href="{{ route('unidades.index') }}">Clubes</a></li>
+            <li class="breadcrumb-item"><a href="{{ route('unidades.index') }}">Unidades</a></li>
             <li class="breadcrumb-item active" aria-current="page">{{ $unidade->nome }}</li>
         </ol>
     </nav>
@@ -40,9 +40,10 @@
 
                 <div class="col-md">
                     <h5>Avaliacoes Ranking</h5>
+                    <p><small class="text-muted">Pontuação da Unidade:</small> {{$rankingUnidade}}</p>
                     <ul>
                         @foreach ($unidade->rankingUnidades as $avaliacao)
-                            <li><a href="{{ route('unidades.show', $avaliacao->avaliacao->id_avaliacao) }}">{{ $avaliacao->avaliacao->nome }}</a></li>
+                            <li><a href="{{ route('unidades.show', $avaliacao->avaliacao->id_avaliacao) }}">{{ $avaliacao->avaliacao->nome }} ({{ $avaliacao->pontuacao }})</a></li>
                         @endforeach
                     </ul>
                 </div>

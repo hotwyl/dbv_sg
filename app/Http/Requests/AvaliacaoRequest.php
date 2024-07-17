@@ -30,4 +30,28 @@ class AvaliacaoRequest extends FormRequest
             'status' => 'required|boolean',
         ];
     }
+
+    /**
+     * Get the error messages for the defined validation rules.
+     *
+     * @return array<string, string>
+     */
+    public function messages(): array
+    {
+        return [
+            'nome.required' => 'O campo nome é obrigatório.',
+            'nome.string' => 'O campo nome deve ser uma string.',
+            'nome.max' => 'O campo nome deve ter no máximo 100 caracteres.',
+            'descricao.string' => 'O campo descricao deve ser uma string.',
+            'descricao.max' => 'O campo descricao deve ter no máximo 255 caracteres.',
+            'categoria.required' => 'O campo categoria é obrigatório.',
+            'categoria.in' => 'O campo categoria deve ser um dos valores: ranking, evento, desafio.',
+            'tipo_item.required' => 'O campo tipo_item é obrigatório.',
+            'tipo_item.in' => 'O campo tipo_item deve ser um dos valores: clube, unidade, desbravador.',
+            'valor.required' => 'O campo valor é obrigatório.',
+            'valor.integer' => 'O campo valor deve ser um número inteiro.',
+            'status.required' => 'O campo status é obrigatório.',
+            'status.boolean' => 'O campo status deve ser um booleano.',
+        ];
+    }
 }

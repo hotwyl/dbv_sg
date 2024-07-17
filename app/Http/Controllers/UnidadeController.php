@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Clube;
+use App\Models\RankingClube;
+use App\Models\RankingUnidade;
 use App\Models\Unidade;
 use App\Http\Requests\StoreUnidadeRequest;
 use App\Http\Requests\UpdateUnidadeRequest;
@@ -63,7 +65,10 @@ class UnidadeController extends Controller
      */
     public function show(Unidade $unidade)
     {
-        return view('unidades.show', compact('unidade'));
+        //total pontuacao ranking_clube
+        $rankingUnidade = RankingUnidade::where('id_unidade', $unidade->id_unidade)->sum('pontuacao');
+
+        return view('unidades.show', compact('unidade', 'rankingUnidade'));
     }
 
     /**
