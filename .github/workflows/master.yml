@@ -1,11 +1,9 @@
-name: Laravel
-
+name: Laravel Deploy website on push 🚀
 on:
   push:
     branches: [ "master" ]
   pull_request:
     branches: [ "master" ]
-
 jobs:
   laravel-tests:
 
@@ -30,6 +28,25 @@ jobs:
         touch database/database.sqlite
     - name: Execute tests (Unit and Feature tests) via PHPUnit/Pest
       env:
-        DB_CONNECTION: sqlite
-        DB_DATABASE: database/database.sqlite
+        DB_CONNECTION: ENV('DB_CONNECTION', 'mysql')
+        DB_HOST: ENV('DB_HOST', 'localhost')
+        DB_PORT: ENV('DB_PORT', '3306')
+        DB_DATABASE: ENV('DB_DATABASE', 'dbv_sg')        
+        DB_USERNAME: ENV('DB_USERNAME', 'root')
+        DB_PASSWORD: ENV('DB_PASSWORD', '')
       run: php artisan test
+
+  web-deploy:
+    name: 🎉 Deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🚚 Get latest code
+        uses: actions/checkout@v2
+
+      - name: 📂 Sync files
+        uses: SamKirkland/FTP-Deploy-Action@4.0.0
+        with:
+          server: ${{ secrets.ftp_host }}
+          username: ${{ secrets.ftp_user }}
+          password: ${{ secrets.ftp_password }}
+          server-dir: dbv_sg/

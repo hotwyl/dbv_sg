@@ -27,7 +27,7 @@
                 <input type="number" name="regiao" class="form-control form-control-sm" placeholder="Região" value="{{ request()->get('regiao') }}">
             </div>
             <div class="col-md">
-                <input type="text" name="nome" class="form-control form-control-sm" placeholder="Nome do Clube, Igreja ou Distrito" value="{{ request()->get('nome') }}">
+                <input type="text" name="nome" class="form-control form-control-sm" placeholder="Nome do Clube, Igreja ou Distrito"  }}">
             </div>
             <div class="col-md-2">
                 <button type="submit" class="btn btn-primary btn-sm">Pesquisar</button>
