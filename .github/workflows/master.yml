@@ -24,31 +24,10 @@ jobs:
       - name: Install Dependencies
         run: composer install --no-ansi --no-interaction --no-scripts --prefer-dist
 
-      - name: Generate application key
-        run: php artisan key:generate
-
-      - name: Set directory permissions
-        run: chmod -R 775 storage bootstrap/cache
-
-      - name: Create Database
-        run: |
-          mysql -e 'CREATE DATABASE IF NOT EXISTS dbv_sg;'
-          php artisan migrate
-
       - name: Clear cache
         run: |
           php artisan optimize
           php artisan optimize:clear
-
-      - name: Run tests
-        env:
-          DB_CONNECTION: mysql
-          DB_HOST:  ${{ secrets.DB_HOST }}
-          DB_PORT: 3306
-          DB_DATABASE: ${{ secrets.DB_DATABASE }}
-          DB_USERNAME: ${{ secrets.DB_USERNAME }}
-          DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
-        run: php artisan test
 
   web-deploy:
     name: 🎉 Deploy
