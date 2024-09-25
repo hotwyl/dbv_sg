@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('Clubes', function (Blueprint $table) {
+        Schema::create('clubes', function (Blueprint $table) {
             $table->id('id_clube');
             $table->string('divisao', 50)->index()->default('Sul-Americana');
             $table->string('uniao', 50)->index()->default('União Sul-Brasileira');

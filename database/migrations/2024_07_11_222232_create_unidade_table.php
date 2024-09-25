@@ -18,7 +18,7 @@ return new class extends Migration
             $table->boolean('status')->default(true);
             $table->timestamps();
 
-            $table->foreign('id_clube')->references('id_clube')->on('Clubes')->onDelete('cascade');
+            $table->foreign('id_clube')->references('id_clube')->on('clubes')->onDelete('cascade');
         });
     }
 

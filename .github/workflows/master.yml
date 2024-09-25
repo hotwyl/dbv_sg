@@ -1,4 +1,4 @@
-name: 🚀 Laravel Deploy website on push 
+name: 🚀 Laravel Deploy website on push
 on:
   push:
     branches: ["master"]
@@ -11,7 +11,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
-      
+
       - name: Set up PHP
         uses: shivammathur/setup-php@15c43e89cdef867065b0213be354c2841860869e
         with:
@@ -23,6 +23,9 @@ jobs:
 
       - name: Install Dependencies
         run: composer install --no-ansi --no-interaction --no-scripts --prefer-dist
+
+      - name: Migration
+        run: php artisan migrate
 
       - name: Clear cache
         run: |
