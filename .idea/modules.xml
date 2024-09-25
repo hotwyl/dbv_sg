@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/sistema_avaliacao_desbravadores.iml" filepath="$PROJECT_DIR$/.idea/sistema_avaliacao_desbravadores.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/dbv_sg.iml" filepath="$PROJECT_DIR$/.idea/dbv_sg.iml" />
     </modules>
   </component>
 </project>
