@@ -28,7 +28,7 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+    public function home()
     {
         $qtd = new \stdClass();
 
@@ -54,5 +54,11 @@ class HomeController extends Controller
         $qtd->evento_unidade = EventoUnidade::groupBy('id_unidade')->selectRaw('sum(acertos) as acertos, sum(erros) as erros, sum(duracao) as duracao, id_unidade')->orderBy('acertos', 'desc')->orderBy('duracao', 'asc')->orderBy('erros', 'asc')->limit(10)->get();
 
         return view('home', compact('qtd'));
+    }
+
+    public function dashboard()
+    {
+        return redirect()->route('home');
+//        return view('dashboard');
     }
 }
